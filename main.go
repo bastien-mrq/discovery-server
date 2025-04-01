@@ -1,4 +1,4 @@
-package main
+package discoveryserver
 
 import (
 	"log"
@@ -22,7 +22,7 @@ func main() {
 
 	r.GET("/list", handleListMicoservices)
 	r.POST("/register", handleRegisterMicroservice)
-	r.POST("/delete", handleDeleteInstance)
+	r.POST("/unregister", handleUnregisterInstance)
 
 	r.Run("127.0.0.1:1111")
 }
@@ -54,7 +54,7 @@ func handleRegisterMicroservice(ctx *gin.Context) {
 	})
 }
 
-func handleDeleteInstance(ctx *gin.Context) {
+func handleUnregisterInstance(ctx *gin.Context) {
 	var input struct {
 		Uuid string `json:"uuid"`
 	}
